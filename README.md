@@ -80,6 +80,13 @@
 
 # 5. Create Table:
     CREATE TABLE <database_name>.table_name(
-        column1 datatype PRIMARY KEY(one or more colurms)
-        
+        column1 datatype PRIMARY KEY(one or more colurms),
+        column2 datatype,
+        column3 datatype,
+        .....
+         columnN datatype
     );
+    
+    .tables : Verify (Take a look) all of our tables
+    .schema : Looking at informations of table
+
