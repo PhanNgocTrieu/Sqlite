@@ -65,4 +65,21 @@
 
 
 # 3. ATTACH Database:
-    
+    Consider a case when you have multiple databases available and you want to use any one of them at a time. SQLite ATTACH DATABASE statement is used to select a particular database, and after this command, all SQLite statements will be executed under the attached database.
+
+    ATTACH DATABASE 'nameOfDatabase' As 'Alias-Name';
+    **Example:
+        qlite> ATTACH DATABASE 'testDB.db' as 'TEST';
+
+# 4. DEATTACH Database:
+    SQLite DETACH DATABASE statement is used to detach and dissociate a named database from a database connection which was previously attached using ATTACH statement
+
+    DEATTACH DATABASE 'Alias-Name';
+    **Example:
+        qlite> ATTACH DATABASE 'TEST';
+
+# 5. Create Table:
+    CREATE TABLE <database_name>.table_name(
+        column1 datatype PRIMARY KEY(one or more colurms)
+        
+    );
