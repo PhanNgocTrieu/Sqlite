@@ -132,7 +132,7 @@
     sqlite> SELECT * FROM COMPANY;
 
     Output:
-    
+
     D          NAME        AGE         ADDRESS     SALARY
     ----------  ----------  ----------  ----------  ----------
     1           Paul        32          California  20000.0
@@ -171,3 +171,69 @@
     sqlite> SELECT sql FROM sqlite_master WHERE type = 'table' AND tbl_name = 'COMPANY';
 
 
+
+# OPERATOR:
+    An operator is a reserved word or a character used primarily in an SQLite statement's WHERE clause to perform operation(s), such as comparisons and arithmetic operations.
+    Types:
+        Arithmetic operators:
+            + (Addition)
+            - (Substraction)
+            * (Multiplication)
+            / (Division)
+            % (Modulus)
+        Comparison operators:
+
+            == : Checks if the values of two operands are equal or not, if yes then the condition becomes true.
+
+            = : Checks if the values of two operands are equal or not, if yes then the condition becomes true.
+            != : 	Checks if the values of two operands are equal or not, if the values are not equal, then the condition becomes true.
+
+            <> : Checks if the values of two operands are equal or not, if the values are not equal, then the condition becomes true.
+
+            > : Checks if the values of two operands are equal or not, if the values are not equal, then the condition becomes true.
+
+            < : Checks if the values of the left operand is less than the value of the right operand, if yes then the condition becomes true.
+
+            >= : Checks if the value of the left operand is greater than or equal to the value of the right operand, if yes then the condition becomes true.
+
+            <= : Checks if the value of the left operand is less than or equal to the value of the right operand, if yes then the condition becomes true.
+
+            !< : Checks if the value of the left operand is not less than the value of the right operand, if yes then the condition becomes true.
+
+            !> : 	Checks if the value of the left operand is not greater than the value of the right operand, if yes then the condition becomes true.
+
+        Logical operators:
+
+            AND: The AND operator allows the existence of multiple conditions in an SQL statement's WHERE clause.
+
+            BETWEEN : The BETWEEN operator is used to search for values that are within a set of values, given the minimum value and the maximum value.
+
+            EXISTS : The EXISTS operator is used to search for the presence of a row in a specified table that meets certain criteria.
+
+            IN : The IN operator is used to compare a value to a list of literal values that have been specified.
+
+            NOT IN : The negation of IN operator which is used to compare a value to a list of literal values that have been specified.
+
+            LIKE : The LIKE operator is used to compare a value to similar values using wildcard operators.
+
+            GLOB : The GLOB operator is used to compare a value to similar values using wildcard operators. Also, GLOB is case sensitive, unlike LIKE.
+
+            NOT : The NOT operator reverses the meaning of the logical operator with which it is used. Eg. NOT EXISTS, NOT BETWEEN, NOT IN, etc. This is negate operator.
+
+            OR: The OR operator is used to combine multiple conditions in an SQL statement's WHERE clause.
+
+            	
+            IS NULL: The NULL operator is used to compare a value with a NULL value.
+
+            IS : work like equal (=)
+            IS NOT: work like not equal (!=)
+            ||: Adds two different strings and make new one.
+
+            UNIQUE: The UNIQUE operator searches every row of a specified table for uniqueness (no duplicates).
+
+
+        Bitwise operators:
+            &, |, ~, <<, >>
+
+
+    
