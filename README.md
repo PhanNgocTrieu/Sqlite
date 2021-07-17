@@ -103,3 +103,18 @@
         // Checking Table: No table
         sqlite>.tables
         sqlite>
+
+# 7. INSERT INTO
+    INSERT INTO TABLE_NAME [(column1, column2, column3,...columnN)]  
+    VALUES (value1, value2, value3,...valueN);
+
+    ** Example:
+        INSERT INTO COMPANY (ID,NAME,AGE,ADDRESS,SALARY)
+        VALUES (1, 'Paul', 32, 'California', 20000.00 );
+
+        // Output:
+        ID          NAME        AGE         ADDRESS     SALARY
+        ----------  ----------  ----------  ----------  ----------
+        1           Paul        32          California  20000.0
+
+    
