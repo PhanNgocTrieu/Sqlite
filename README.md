@@ -235,5 +235,51 @@
         Bitwise operators:
             &, |, ~, <<, >>
 
-
+# Expression:
+# 1. Boolean Expression:
+    An expression is a combination of one or more values, operators, and SQL functions that evaluate to a value.
+    Sytax:
+        SELECT column1, column2, columnN 
+        FROM table_name 
+        WHERE [CONDITION | EXPRESSION];
     
+    **Example: Considering that we have a database such as we already have above.
+        sqlite> SELECT * FROM COMPANY WHERE SALARY = 20000;
+
+        Output:
+            ID          NAME        AGE         ADDRESS     SALARY    
+            ----------  ----------  ----------  ----------  ----------
+            1           Paul        32          California  20000.0   
+            3           Teddy       23          Norway      20000.0  
+# 2. Numeric Expression:
+    These expressions are used to perform any mathematical operation in any query.
+    Syntax:
+        SELECT numerical_expression as OPERATION_NAME
+        [FROM table_name WHERE CONDITION] ;
+
+    **Example:
+        sqlite> SELECT (15 + 6) AS ADDITION;
+        ADDITION = 21
+
+        Output:
+        ADDITION  
+        ----------
+        36      
+    
+    There are several built-in functions such as avg(), sum(), count(), etc., to perform what is known as aggregate data calculations against a table or a specific table column.
+
+    **Example:
+        SELECT COUNT(*) AS "RECORDS" FROM COMPANY; 
+        RECORDS = 7
+# 3. Date Expression:
+    Date Expressions returns the current system date and time values. These expressions are used in various data manipulations.
+
+        SELECT CURRENT_TIMESTAMP;
+        
+        Output:
+        CURRENT_TIMESTAMP  
+        -------------------
+        2021-07-17 13:06:20
+
+
+
