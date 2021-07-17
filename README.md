@@ -117,4 +117,57 @@
         ----------  ----------  ----------  ----------  ----------
         1           Paul        32          California  20000.0
 
+
+# 8. SELECT
+    SQLite SELECT statement is used to fetch the data from a SQLite database table which returns data in the form of a result table. These result tables are also called result sets.
+
+    Syntax: SELECT column1, column2, columnN FROM table_name;
+    if we want to select all the fields available in the field:
+    Syntax: SELECT * FROM TABLE;
+
+
+    Note: the following command would make displaying infors by columns
+    sqlite>.header on
+    sqlite>.mode column
+    sqlite> SELECT * FROM COMPANY;
+
+    Output:
     
+    D          NAME        AGE         ADDRESS     SALARY
+    ----------  ----------  ----------  ----------  ----------
+    1           Paul        32          California  20000.0
+    2           Allen       25          Texas       15000.0
+    3           Teddy       23          Norway      20000.0
+    4           Mark        25          Rich-Mond   65000.0
+    5           David       27          Texas       85000.0
+    6           Kim         22          South-Hall  45000.0
+    7           James       24          Houston     10000.0
+
+    ## Setting Output Column Width
+    Syntax:  .width num, num....
+
+    **Example:
+        sqlite>.width 10,20,10;
+        sqlite>SELECT * FROM COMPANY;
+
+        Output:
+
+        ID          NAME                  AGE         ADDRESS     SALARY
+        ----------  --------------------  ----------  ----------  ----------
+        1           Paul                  32          California  20000.0
+        2           Allen                 25          Texas       15000.0
+        3           Teddy                 23          Norway      20000.0
+        4           Mark                  25          Rich-Mond   65000.0
+        5           David                 27          Texas       85000.0
+        6           Kim                   22          South-Hall  45000.0
+        7           James                 24          Houston     10000.0
+
+    ##Schema Information:
+    As all the dot commands are available at SQLite prompt, hence while programming with SQLite, you will use the following SELECT statement with sqlite_master table to list down all the tables created in your database.
+
+    sqlite> SELECT tbl_name FROM sqlite_master WHERE type = 'table';
+
+    You can list down complete information about COMPANY table as follows:
+    sqlite> SELECT sql FROM sqlite_master WHERE type = 'table' AND tbl_name = 'COMPANY';
+
+
