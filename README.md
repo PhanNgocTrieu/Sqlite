@@ -90,3 +90,16 @@
     .tables : Verify (Take a look) all of our tables
     .schema : Looking at informations of table
 
+# 6. Drop table:
+    DROP TABLE database_name.table_name;
+    **Example:
+        sqlite>.tables
+        COMPANY       test.COMPANY
+        
+        // Doing this:
+        sqlite>DROP TABLE COMPANY;
+        sqlite>
+
+        // Checking Table: No table
+        sqlite>.tables
+        sqlite>
