@@ -481,5 +481,181 @@
     2           Allen       25          Texas       15000.0   
     3           Teddy       23          Norway      20000.0 
 
+
+
+# 16. ORDER BY
+    SQLite ORDER BY clause is used to sort the data in an ascending or descending order, based on one or more columns.
+
+    Syntax:
+        SELECT column-list 
+        FROM table_name 
+        [WHERE condition] 
+        [ORDER BY column1, column2, .. columnN] [ASC | DESC];
+    
+    **Example:
+        We have:
+
+        ID          NAME        AGE         ADDRESS     SALARY    
+        ----------  ----------  ----------  ----------  ----------
+        1           Paul        32          California  20000.0   
+        2           Allen       25          Texas       15000.0   
+        3           Teddy       23          Norway      20000.0   
+        4           Mark        25          Rich-Mond   65000.0   
+        6           Kim         22          Texas       45000.0   
+        7           John        23          Vietnam     60000.0  
+
+        sqlite> SELECT * FROM COMPANY ORDER BY SALARY ASC;
+
+        Output: Ordering by SALARY from low to high
+        ID          NAME        AGE         ADDRESS     SALARY    
+        ----------  ----------  ----------  ----------  ----------
+        2           Allen       25          Texas       15000.0   
+        1           Paul        32          California  20000.0   
+        3           Teddy       23          Norway      20000.0   
+        6           Kim         22          Texas       45000.0   
+        7           John        23          Vietnam     60000.0   
+        4           Mark        25          Rich-Mond   65000.0 
+
+        sqlite> SELECT * FROM COMPANY ORDER BY SALARY DESC;
+
+        Output: Ordering by SALARY from high to low
+
+        ID          NAME        AGE         ADDRESS     SALARY    
+        ----------  ----------  ----------  ----------  ----------
+        4           Mark        25          Rich-Mond   65000.0   
+        7           John        23          Vietnam     60000.0   
+        6           Kim         22          Texas       45000.0   
+        1           Paul        32          California  20000.0   
+        3           Teddy       23          Norway      20000.0   
+        2           Allen       25          Texas       15000.0 
+
+        Note: We also can use more values to select orderly:
+        
+        **Example: 
+        sqlite> SELECT * FROM COMPANY ORDER BY NAME, SALARY DESC;
+
+        Output:
+
+        ID          NAME        AGE         ADDRESS     SALARY    
+        ----------  ----------  ----------  ----------  ----------
+        2           Allen       25          Texas       15000.0   
+        7           John        23          Vietnam     60000.0   
+        6           Kim         22          Texas       45000.0   
+        4           Mark        25          Rich-Mond   65000.0   
+        1           Paul        32          California  20000.0   
+        3           Teddy       23          Norway      20000.0 
+
+
+# 17. GROUP BY
+    SQLite GROUP BY clause is used in collaboration with the SELECT statement to arrange identical data into groups.
+
+    GROUP BY clause follows the WHERE clause in a SELECT statement and precedes the ORDER BY clause.
+
+    Syntax:
+        SELECT column-list
+        FROM table_name
+        WHERE [ conditions ]
+        GROUP BY column1, column2....columnN
+        ORDER BY column1, column2....columnN
+
+    **Example:
+        sqlite> SELECT NAME, SUM(SALARY) FROM COMPANY GROUP BY NAME;
+
+        NAME        SUM(SALARY)
+        ----------  -----------
+        Allen       15000.0    
+        John        60000.0    
+        Kim         45000.0    
+        Mark        65000.0    
+        Paul        20000.0    
+        Teddy       20000.0    
+
+        **Insert more customers:
+        INSERT INTO COMPANY VALUES (8, 'Paul', 24, 'Houston', 20000.00 );
+        INSERT INTO COMPANY VALUES (9, 'James', 44, 'Norway', 5000.00 );
+        INSERT INTO COMPANY VALUES (10, 'James', 45, 'Texas', 5000.00 );
+
+        sqlite> SELECT NAME, SUM(SALARY) FROM COMPANY GROUP BY NAME;
+
+        Output:
+        NAME        SUM(SALARY)
+        ----------  -----------
+        Allen       15000.0    
+        James       10000.0    
+        John        60000.0    
+        Kim         45000.0    
+        Mark        65000.0    
+        Paul        40000.0    
+        Teddy       20000.0  
+
+
+# 19. HAVING
+    HAVING clause enables you to specify conditions that filter which group results appear in the final results.
+
+    The WHERE clause places conditions on the selected columns, whereas the HAVING clause places conditions on groups created by GROUP BY clause.
+
+    Syntax:
+        SELECT
+        FROM
+        WHERE
+        GROUP BY
+        HAVING
+        ORDER BY
+
+
+    **Example:
+        sqlite > SELECT * FROM COMPANY GROUP BY name HAVING count(name) < 2;
+
+        Output:
+
+        ID          NAME        AGE         ADDRESS     SALARY    
+        ----------  ----------  ----------  ----------  ----------
+        2           Allen       25          Texas       15000.0   
+        7           John        23          Vietnam     60000.0   
+        6           Kim         22          Texas       45000.0   
+        4           Mark        25          Rich-Mond   65000.0   
+        3           Teddy       23          Norway      20000.0 
     
 
+
+# 20. DISTINCT
+    SQLite DISTINCT keyword is used in conjunction with SELECT statement to eliminate all the duplicate records and fetching only the unique records.
+
+    There may be a situation when you have multiple duplicate records in a table. While fetching such records, it makes more sense to fetch only unique records instead of fetching duplicate records.
+
+    Syntax:
+        SELECT DISTINCT column1, column2,.....columnN 
+        FROM table_name
+        WHERE [condition]
+
+
+    **Example:
+
+        sqlite> SELECT name FROM COMPANY;
+
+        Output: withou DISTINCT
+        NAME      
+        ----------
+        Paul      
+        Allen     
+        Teddy     
+        Mark      
+        Kim       
+        John      
+        Paul      
+        James     
+        James  
+
+        qlite> SELECT DISTINCT name FROM COMPANY;
+
+        NAME      
+        ----------
+        Paul      
+        Allen     
+        Teddy     
+        Mark      
+        Kim       
+        John      
+        James  
+
+        
