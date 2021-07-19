@@ -791,11 +791,138 @@
         OFF: No journal record is kept.
 
     ============================================================================
-    
-    
-    
-    ============================================================================
-    ============================================================================
-    ============================================================================
+    ...
+    ...
+    ...
 
 
+# 21. Constraints
+    Constraints are the rules enforced on a data columns on table. These are used to limit the type of data that can go into a table. This ensures the accuracy and reliability of the data in the database.
+
+    Constraints could be column level or table level. Column level constraints are applied only to one column, whereas table level constraints are applied to the whole table.
+
+    Following are commonly used constraints available in SQLite.
+
+        NOT NULL Constraint − Ensures that a column cannot have NULL value.
+
+        DEFAULT Constraint − Provides a default value for a column when none is specified.
+
+        UNIQUE Constraint − Ensures that all values in a column are different.
+
+        PRIMARY Key − Uniquely identifies each row/record in a database table.
+
+        CHECK Constraint − Ensures that all values in a column satisfies certain conditions.
+
+    Example: NOT NULL CONSTRAINT
+        CREATE TABLE COMPANY(
+        ID INT PRIMARY KEY     NOT NULL,
+        NAME           TEXT    NOT NULL,
+        AGE            INT     NOT NULL,
+        ADDRESS        CHAR(50),
+        SALARY         REAL
+        );
+
+# 22. JOIN:
+    SQLite Joins clause is used to combine records from two or more tables in a database. A JOIN is a means for combining fields from two tables by using values common to each.
+
+    SQL defines three major types of joins −
+        The CROSS JOIN
+        The INNER JOIN
+        The OUTER JOIN
+    
+    ============================================================================
+    
+    * CROSS JOIN
+        CROSS JOIN matches every row of the first table with every row of the second table
+
+    Syntax:
+        SELECT ... FROM table1 CROSS JOIN table2 ...
+
+    ** Example:
+
+        sqlite> SELECT EMP_ID, NAME, AGE, SALARY FROM COMPANY CROSS JOIN DEPARTMENT;
+
+        Output:
+        EMP_ID      NAME        AGE         SALARY    
+        ----------  ----------  ----------  ----------
+        1           Paul        32          20000.0   
+        2           Paul        32          20000.0   
+        7           Paul        32          20000.0   
+        1           Allen       25          15000.0   
+        2           Allen       25          15000.0   
+        7           Allen       25          15000.0   
+        1           Teddy       23          20000.0   
+        2           Teddy       23          20000.0   
+        7           Teddy       23          20000.0   
+        1           Mark        25          65000.0   
+        2           Mark        25          65000.0   
+        7           Mark        25          65000.0   
+        1           Kim         22          45000.0   
+        2           Kim         22          45000.0   
+        7           Kim         22          45000.0   
+        1           John        23          60000.0   
+        2           John        23          60000.0   
+        7           John        23          60000.0   
+        1           Paul        24          20000.0   
+        2           Paul        24          20000.0   
+        7           Paul        24          20000.0   
+        1           James       44          5000.0    
+        2           James       44          5000.0    
+        7           James       44          5000.0    
+        1           James       45          5000.0    
+        2           James       45          5000.0    
+        7           James       45          5000.0  
+
+    ============================================================================
+    
+    * INNERT JOIN:
+        INNER JOIN creates a new result table by combining column values of two tables (table1 and table2) based upon the join-predicate.
+
+    Syntax: 
+        SELECT ... FROM table1 [INNER] JOIN table2 ON conditional_expression ...
+    
+    **Example:
+    
+        sqlite> SELECT EMP_ID, NAME, DEPT FROM COMPANY INNER JOIN DEPARTMENT
+            ON COMPANY.ID = DEPARTMENT.EMP_ID;
+
+        Output:
+        EMP_ID      NAME        DEPT      
+        ----------  ----------  ----------
+        1           Paul        IT Billing
+        2           Allen       Engineerin
+        7           John        Finance  
+
+    ============================================================================
+
+    * OUTER JOIN
+        OUTER JOIN is an extension of INNER JOIN. Though SQL standard defines three types of OUTER JOINs: LEFT, RIGHT, and FULL, SQLite only supports the LEFT OUTER JOIN.
+
+        OUTER JOINs have a condition that is identical to INNER JOINs, expressed using an ON, USING, or NATURAL keyword.
+
+        The initial results table is calculated the same way. Once the primary JOIN is calculated, an OUTER JOIN will take any unjoined rows from one or both tables, pad them out with NULLs, and append them to the resulting table.
+
+    Syntax:
+        SELECT ... FROM table1 LEFT OUTER JOIN table2 ON conditional_expression ...
+    
+        To avoid redundancy and keep the phrasing shorter, OUTER JOIN conditions can be declared with a USING expression
+    Syntax:
+        SELECT ... FROM table1 LEFT OUTER JOIN table2 USING ( column1 ,... ) ...
+        
+    **Example:
+        sqlite> SELECT EMP_ID, NAME, DEPT FROM COMPANY LEFT OUTER JOIN DEPARTMENT ON COMPANY.ID = DEPARTMENT.EMP_ID;
+
+        Output:
+            EMP_ID      NAME        DEPT      
+            ----------  ----------  ----------
+            1           Paul        IT Billing
+            2           Allen       Engineerin
+                        Teddy                 
+                        Mark                  
+                        Kim                   
+            7           John        Finance   
+                        Paul                  
+                        James                 
+                        James 
+
+    
