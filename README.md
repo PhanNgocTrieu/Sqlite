@@ -659,3 +659,143 @@
         James  
 
         
+# 21. PRAGAM:
+    SQLite PRAGMA command is a special command to be used to control various environmental variables and state flags within the SQLite environment. A PRAGMA value can be read and it can also be set based on the requirements.
+
+    To query the current PRAGMA value
+    Syntax:
+        PRAGMA pragma_name;
+
+    To set a new value for PRAGMA
+    Syntax:
+        PRAGMA pragma_name = value;
+
+    ============================================================================
+    
+    * auto_vacuum pragma:
+        The auto_vacuum pragma gets or sets the auto-vacuum mode. 
+    Syntax:
+        PRAGMA [database.]auto_vacuum;
+        PRAGMA [database.]auto_vacuum = mode;
+
+        Where:
+        mode can be:
+            0 or NONE: Auto-vacuum is disabled. This is the default mode which means that a database file will never shrink in size unless it is manually vacuumed using the VACUUM command.
+
+            1 or FULL: Auto-vacuum is enabled and fully automatic which allows a database file to shrink as data is removed from the database.
+
+            2 or INCREMENTAL: Auto-vacuum is enabled but must be manually activated. In this mode the reference data is maintained, but free pages are simply put on the free list. These pages can be recovered using the incremental_vacuum pragma any time.
+
+    ============================================================================
+    
+    * cache_size pragma:
+        The cache_size pragma can get or temporarily set the maximum size of the in-memory page cache
+
+    Syntax:
+        PRAGMA [database.]cache_size;
+        PRAGMA [database.]cache_size = pages;
+
+        Note: The pages value represents the number of pages in the cache. The built-in page cache has a default size of 2,000 pages and a minimum size of 10 pages.
+
+    ============================================================================
+    
+    * case_sensitive_like pragma:
+        The case_sensitive_like pragma controls the case-sensitivity of the built-in LIKE expression. By default, this pragma is false which means that the built-in LIKE operator ignores the letter case.
+    
+    Syntax:
+        PRAGMA case_sensitive_like = [true|false];
+    
+    Note: There is no way to query for the current state of this pragma.
+
+    ============================================================================
+    
+    * count_changes pragma:
+        count_changes pragma gets or sets the return value of data manipulation statements such as INSERT, UPDATE and DELETE.
+    
+    syntax:
+        PRAGMA count_changes;
+        PRAGMA count_changes = [true|false];
+    
+    Note: By default, this pragma is false and these statements do not return anything
+
+    ============================================================================
+    
+    * database_list pragma:
+        The database_list pragma will be used to list down all the databases attached
+    
+    Syntax:
+        PRAGMA database_list;
+    
+    This pragma will return a three-column table with one row per open or attached database giving database sequence number, its name and the file associated.
+
+    ============================================================================
+    
+    * encoding pragma:
+        The encoding pragma controls how strings are encoded and stored in a database file
+    
+    syntax:
+        PRAGMA encoding;
+        PRAGMA encoding = format;
+    note: The format value can be one of UTF-8, UTF-16le, or UTF-16be.
+    
+    ============================================================================
+    
+    * freelist_count pragma:
+        The freelist_count pragma returns a single integer indicating how many database pages are currently marked as free and available
+    
+    Syntax:
+        PRAGMA [database.]freelist_count;
+    
+    note: The format value can be one of UTF-8, UTF-16le, or UTF-16be.
+
+    ============================================================================
+    
+    * index_info pragma:
+        The index_info pragma returns information about a database index.
+
+    Syntax:
+        PRAGMA [database.]index_info( index_name );
+
+    Note: The result set will contain one row for each column contained in the index giving column sequence, column index with-in table and column name.
+
+    ============================================================================
+    
+    * index_list pragma:
+        index_list pragma lists all of the indexes associated with a table
+    syntax:
+        PRAGMA [database.]index_list( table_name );
+    note:
+        The result set will contain one row for each index giving index sequence, index name and flag indicating whether the index is unique or not.
+
+    ============================================================================
+    
+    * journal_mode pragma:
+        The journal_mode pragma gets or sets the journal mode which controls how the journal file is stored and processed.
+    
+    syntax:
+        PRAGMA journal_mode;
+        PRAGMA journal_mode = mode;
+        PRAGMA database.journal_mode;
+        PRAGMA database.journal_mode = mode;
+
+    Note: There are five supported journal modes as listed in the following table.
+
+        DELETE: This is the default mode. Here at the conclusion of a transaction, the journal file is deleted.
+
+        TRUNCATE: The journal file is truncated to a length of zero bytes.
+
+        PERSIST: The journal file is left in place, but the header is overwritten to indicate the journal is no longer valid.
+
+        MEMORY: The journal record is held in memory, rather than on disk.
+
+        OFF: No journal record is kept.
+
+    ============================================================================
+    
+    
+    
+    ============================================================================
+    ============================================================================
+    ============================================================================
+
+
