@@ -1,24 +1,24 @@
 CREATE TABLE salesMan (
-    salesMan_ID NUMERIC(5) PRIMARY KEY,
-    Name VARCHAR(30),
-    City VARCHAR(15),
-    Commission DECIMAL(5,2)
+    salesMan_ID NUMERIC(5)  NOT NULL PRIMARY KEY ,
+    Name VARCHAR(30)        NOT NULL,
+    City VARCHAR(15)        NOT NULL,
+    Commission DECIMAL(5,2) NOT NULL
 );
 
 CREATE TABLE Orders(
-    Order_No NUMERIC(5) PRIMARY KEY,
-    Purch_AMT DECIMAL(8,2),
-    Order_Date DATE,
-    Customer_ID NUMERIC(5),
-    salesMan_ID NUMERIC(5)
+    Order_No NUMERIC(5)     NOT NULL PRIMARY KEY,
+    Purch_AMT DECIMAL(8,2)  NOT NULL,
+    Order_Date DATE         NOT NULL,
+    Customer_ID NUMERIC(5)  NOT NULL,
+    salesMan_ID NUMERIC(5)  NOT NULL
 );
 
 CREATE TABLE Customer(
-    Customer_ID NUMERIC(5),
-    Cust_Name   VARCHAR(30),
-    City        VARCHAR(15),
-    Grade       NUMERIC(3),
-    salesMan_ID NUMERIC(5)
+    Customer_ID NUMERIC(5)  NOT NULL,
+    Cust_Name   VARCHAR(30) NOT NULL,
+    City        VARCHAR(15) NOT NULL,
+    Grade       NUMERIC(3)  NOT NULL,
+    salesMan_ID NUMERIC(5)  NOT NULL
 );
 
 /*  INSERT VALUES TO TABLES     */
@@ -45,37 +45,37 @@ CREATE TABLE Customer(
 -- Inserting Orders Tables's values:
 
     INSERT INTO Orders(Order_No, Purch_AMT, Order_Date, Customer_ID, salesMan_ID)
-    VALUES(1, 2.3, '20-7-2021 12:00', 1, 1);
+    VALUES(1, 32000, '20-7-2021 12:00', 1, 1);
     
     INSERT INTO Orders(Order_No, Purch_AMT, Order_Date, Customer_ID, salesMan_ID) 
-    VALUES(2, 3.2, '20-7-2021 12:01', 2, 2);
+    VALUES(2, 72000, '20-7-2021 12:01', 2, 2);
 
     INSERT INTO Orders(Order_No, Purch_AMT, Order_Date, Customer_ID, salesMan_ID) 
-    VALUES(3, 2.1, '20-7-2021 12:02', 3, 3);
+    VALUES(3, 12000, '20-7-2021 12:02', 3, 3);
 
     INSERT INTO Orders(Order_No, Purch_AMT, Order_Date, Customer_ID, salesMan_ID) 
-    VALUES(4, 5, '20-7-2021 12:10', 4, 4);
+    VALUES(4, 21000, '20-7-2021 12:10', 4, 4);
 
     INSERT INTO Orders(Order_No, Purch_AMT, Order_Date, Customer_ID, salesMan_ID) 
-    VALUES(5, 5.6, '20-7-2021 12:20', 5, 5);
+    VALUES(5, 33000, '20-7-2021 12:20', 5, 5);
     
     INSERT INTO Orders(Order_No, Purch_AMT, Order_Date, Customer_ID, salesMan_ID) 
-    VALUES(6, 3.45, '20-7-2021 12:30', 6, 6);
+    VALUES(6, 36000, '20-7-2021 12:30', 6, 6);
 
     INSERT INTO Orders(Order_No, Purch_AMT, Order_Date, Customer_ID, salesMan_ID) 
-    VALUES(7, 2.5, '20-7-2021 12:40', 7, 7);
+    VALUES(7, 45000, '20-7-2021 12:40', 7, 7);
 
     INSERT INTO Orders(Order_No, Purch_AMT, Order_Date, Customer_ID, salesMan_ID) 
-    VALUES(8, 6, '20-7-2021 12:50', 8, 8);
+    VALUES(8, 71000, '20-7-2021 12:50', 8, 8);
 
     INSERT INTO Orders(Order_No, Purch_AMT, Order_Date, Customer_ID, salesMan_ID) 
-    VALUES(9, 6.4, '20-7-2021 13:00', 9, 9);
+    VALUES(9, 65000, '20-7-2021 13:00', 9, 9);
 
     INSERT INTO Orders(Order_No, Purch_AMT, Order_Date, Customer_ID, salesMan_ID) 
-    VALUES(10, 4.5, '20-7-2021 13:10', 10, 10);
+    VALUES(10, 81000, '20-7-2021 13:10', 10, 10);
 
     INSERT INTO Orders(Order_No, Purch_AMT, Order_Date, Customer_ID, salesMan_ID) 
-    VALUES(11, 10, '20-7-2021 13:20', 11, 11);
+    VALUES(11, 70000, '20-7-2021 13:20', 11, 11);
 
 -- DISPLAY Orders Table
     SELECT * FROM Orders;
@@ -132,6 +132,8 @@ CREATE TABLE Customer(
 
 
 -- Update purch_amt on Orders Table
+    UPDATE Orders SET purch_amt = 3 WHERE purch_amt < 3;
+
     UPDATE Orders SET purch_amt = 3 WHERE purch_amt < 3;
 
     -- To see the changing that we made
