@@ -1,25 +1,27 @@
-CREATE TABLE salesMan (
-    salesMan_ID NUMERIC(5)  NOT NULL PRIMARY KEY ,
-    Name VARCHAR(30)        NOT NULL,
-    City VARCHAR(15)        NOT NULL,
-    Commission DECIMAL(5,2) NOT NULL
-);
+-- Creating Tables:
 
-CREATE TABLE Orders(
-    Order_No NUMERIC(5)     NOT NULL PRIMARY KEY,
-    Purch_AMT DECIMAL(8,2)  NOT NULL,
-    Order_Date DATE         NOT NULL,
-    Customer_ID NUMERIC(5)  NOT NULL,
-    salesMan_ID NUMERIC(5)  NOT NULL
-);
+    CREATE TABLE salesMan (
+        salesMan_ID NUMERIC(5)  NOT NULL PRIMARY KEY ,
+        Name VARCHAR(30)        NOT NULL,
+        City VARCHAR(15)        NOT NULL,
+        Commission DECIMAL(5,2) NOT NULL
+    );
 
-CREATE TABLE Customer(
-    Customer_ID NUMERIC(5)  NOT NULL,
-    Cust_Name   VARCHAR(30) NOT NULL,
-    City        VARCHAR(15) NOT NULL,
-    Grade       NUMERIC(3)  NOT NULL,
-    salesMan_ID NUMERIC(5)  NOT NULL
-);
+    CREATE TABLE Orders(
+        Order_No NUMERIC(5)     NOT NULL PRIMARY KEY,
+        Purch_AMT DECIMAL(8,2)  NOT NULL,
+        Order_Date DATE         NOT NULL,
+        Customer_ID NUMERIC(5)  NOT NULL,
+        salesMan_ID NUMERIC(5)  NOT NULL
+    );
+
+    CREATE TABLE Customer(
+        Customer_ID NUMERIC(5)  NOT NULL,
+        Cust_Name   VARCHAR(30) NOT NULL,
+        City        VARCHAR(15) NOT NULL,
+        Grade       NUMERIC(3)  NOT NULL,
+        salesMan_ID NUMERIC(5)  NOT NULL
+    );
 
 /*  INSERT VALUES TO TABLES     */
 -- Inserting salesMan Table's values:
@@ -77,47 +79,48 @@ CREATE TABLE Customer(
     INSERT INTO Orders(Order_No, Purch_AMT, Order_Date, Customer_ID, salesMan_ID) 
     VALUES(11, 70000, '20-7-2021 13:20', 11, 11);
 
+
 -- DISPLAY Orders Table
     SELECT * FROM Orders;
-
-
 
 
 -- Customer Tables' values:
     
     INSERT INTO Customer(Customer_ID, Cust_Name, City, Grade, salesMan_ID)
-    VALUES(1, 'Phan Ngoc Trieu', 'Quang Nam', 12, 1);
+    VALUES(1, 'Phan Ngoc Trieu', 'Quang Nam', 10, 1);
     
     INSERT INTO Customer(Customer_ID, Cust_Name, City, Grade, salesMan_ID)
     VALUES(2, 'Hoang Duy Nam', 'Quang Nam', 12, 2);
 
     INSERT INTO Customer(Customer_ID, Cust_Name, City, Grade, salesMan_ID)
-    VALUES(3, 'DINH PHAN THIEN', 'Da Nang', 12, 3);
+    VALUES(3, 'DINH PHAN THIEN', 'Da Nang', 23, 3);
 
     INSERT INTO Customer(Customer_ID, Cust_Name, City, Grade, salesMan_ID)
-    VALUES(4, 'Truong Lam Le', 'Hue', 12, 4);
+    VALUES(4, 'Truong Lam Le', 'Hue', 54, 4);
 
     INSERT INTO Customer(Customer_ID, Cust_Name, City, Grade, salesMan_ID)
-    VALUES(5, 'Le viet Hieu', 'Da Nang', 12, 5);
+    VALUES(5, 'Le viet Hieu', 'Da Nang', 33, 5);
 
     INSERT INTO Customer(Customer_ID, Cust_Name, City, Grade, salesMan_ID)
-    VALUES(6, 'Nguyen Van Duy', 'Da Nang', 12, 6);
+    VALUES(6, 'Nguyen Van Duy', 'Da Nang', 122, 6);
 
     INSERT INTO Customer(Customer_ID, Cust_Name, City, Grade, salesMan_ID)
-    VALUES(7, 'Do Van Kien', 'Kon Tum', 12, 7);
+    VALUES(7, 'Do Van Kien', 'Kon Tum', 21, 7);
 
     INSERT INTO Customer(Customer_ID, Cust_Name, City, Grade, salesMan_ID)
-    VALUES(8, 'Le Xuan Dieu', 'Da Nang', 12, 8);
+    VALUES(8, 'Le Xuan Dieu', 'Da Nang', 38, 8);
 
     INSERT INTO Customer(Customer_ID, Cust_Name, City, Grade, salesMan_ID)
-    VALUES(9, 'Nguyen Dai Dao', 'Thanh Hoa', 12, 9);
+    VALUES(9, 'Nguyen Dai Dao', 'Thanh Hoa', 81, 9);
 
     INSERT INTO Customer(Customer_ID, Cust_Name, City, Grade, salesMan_ID)
-    VALUES(10, 'Tran Phuoc Dinh', 'Quang Nam', 12, 10);
+    VALUES(10, 'Tran Phuoc Dinh', 'Quang Nam', 75, 10);
 
     INSERT INTO Customer(Customer_ID, Cust_Name, City, Grade, salesMan_ID)
-    VALUES(11, 'Ton That Tinh', 'Hue', 12, 11);
+    VALUES(11, 'Ton That Tinh', 'Hue', 68, 11);
 
+-- Display at Customer Table:
+    SELECT * FROM Customer;
 
 
 
@@ -127,17 +130,26 @@ CREATE TABLE Customer(
 
     SELECT * FROM Customer WHERE Customer_id > 5 AND City = 'Da Nang';
 
-    SELECT * FROM Orders WHERE purch_amt > 3 ORDER BY purch_amt;
+    SELECT * FROM Orders WHERE Purch_AMT > 30000 ORDER BY purch_amt;
 
+    SELECT * FROM Orders LIMIT 3;
+
+    SELECT salesman_id, Name, commission FROM salesMan ORDER BY Name ASC, Commission DESC;
 
 
 -- Update purch_amt on Orders Table
-    UPDATE Orders SET purch_amt = 3 WHERE purch_amt < 3;
+    -- Modifying purch_amt of Orders Table
+    UPDATE Orders SET Purch_AMT = 72000 WHERE Customer_ID = 3;
 
-    UPDATE Orders SET purch_amt = 3 WHERE purch_amt < 3;
+    UPDATE Orders SET Purch_AMT = 80000 WHERE Customer_ID = 10;
 
     -- To see the changing that we made
     SELECT * FROM Orders;
 
 
--- 
+-- DROP TABLE ---- using it by uncomment it!
+    /*
+    DROP TABLE Customer;
+    DROP TABLE Orders;
+    DROP TABLE salesMan;
+    */
