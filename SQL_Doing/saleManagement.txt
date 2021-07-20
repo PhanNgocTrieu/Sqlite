@@ -1,0 +1,141 @@
+CREATE TABLE salesMan (
+    salesMan_ID NUMERIC(5) PRIMARY KEY,
+    Name VARCHAR(30),
+    City VARCHAR(15),
+    Commission DECIMAL(5,2)
+);
+
+CREATE TABLE Orders(
+    Order_No NUMERIC(5) PRIMARY KEY,
+    Purch_AMT DECIMAL(8,2),
+    Order_Date DATE,
+    Customer_ID NUMERIC(5),
+    salesMan_ID NUMERIC(5)
+);
+
+CREATE TABLE Customer(
+    Customer_ID NUMERIC(5),
+    Cust_Name   VARCHAR(30),
+    City        VARCHAR(15),
+    Grade       NUMERIC(3),
+    salesMan_ID NUMERIC(5)
+);
+
+/*  INSERT VALUES TO TABLES     */
+-- Inserting salesMan Table's values:
+    INSERT INTO salesMan(salesMan_ID, Name, City, Commission) VALUES(1,'Phan Ngoc Trieu', 'Quang Nam', 6);
+    INSERT INTO salesMan(salesMan_ID, Name, City, Commission) VALUES(2,'Hoang Duy Nam', 'Quang Nam', 5);
+    INSERT INTO salesMan(salesMan_ID, Name, City, Commission) VALUES(3,'DINH PHAN THIEN', 'Da Nang', 3.2);
+    INSERT INTO salesMan(salesMan_ID, Name, City, Commission) VALUES(4,'Truong Lam Le', 'Hue', 3.5);
+    INSERT INTO salesMan(salesMan_ID, Name, City, Commission) VALUES(5,'Le viet Hieu', 'Da Nang', 2);
+    INSERT INTO salesMan(salesMan_ID, Name, City, Commission) VALUES(6,'Nguyen Van Duy Vu', 'Da Nang', 5);
+    INSERT INTO salesMan(salesMan_ID, Name, City, Commission) VALUES(7,'Do Van Kien', 'Kon Tum', 3.3);
+    INSERT INTO salesMan(salesMan_ID, Name, City, Commission) VALUES(8,'Le Xuan Dieu', 'Da Nang', 6.2);
+    INSERT INTO salesMan(salesMan_ID, Name, City, Commission) VALUES(9,'Nguyen Dai Dao', 'Thanh Hoa', 5.5);
+    INSERT INTO salesMan(salesMan_ID, Name, City, Commission) VALUES(10,'Tran Phuoc Dinh', 'Quang Nam', 4.2);
+    INSERT INTO salesMan(salesMan_ID, Name, City, Commission) VALUES(11,'Ton That Tinh', 'Hue', 2.2);
+
+
+-- DISPLAY salesMan Table
+    SELECT * FROM salesMan;
+
+
+
+
+-- Inserting Orders Tables's values:
+
+    INSERT INTO Orders(Order_No, Purch_AMT, Order_Date, Customer_ID, salesMan_ID)
+    VALUES(1, 2.3, '20-7-2021 12:00', 1, 1);
+    
+    INSERT INTO Orders(Order_No, Purch_AMT, Order_Date, Customer_ID, salesMan_ID) 
+    VALUES(2, 3.2, '20-7-2021 12:01', 2, 2);
+
+    INSERT INTO Orders(Order_No, Purch_AMT, Order_Date, Customer_ID, salesMan_ID) 
+    VALUES(3, 2.1, '20-7-2021 12:02', 3, 3);
+
+    INSERT INTO Orders(Order_No, Purch_AMT, Order_Date, Customer_ID, salesMan_ID) 
+    VALUES(4, 5, '20-7-2021 12:10', 4, 4);
+
+    INSERT INTO Orders(Order_No, Purch_AMT, Order_Date, Customer_ID, salesMan_ID) 
+    VALUES(5, 5.6, '20-7-2021 12:20', 5, 5);
+    
+    INSERT INTO Orders(Order_No, Purch_AMT, Order_Date, Customer_ID, salesMan_ID) 
+    VALUES(6, 3.45, '20-7-2021 12:30', 6, 6);
+
+    INSERT INTO Orders(Order_No, Purch_AMT, Order_Date, Customer_ID, salesMan_ID) 
+    VALUES(7, 2.5, '20-7-2021 12:40', 7, 7);
+
+    INSERT INTO Orders(Order_No, Purch_AMT, Order_Date, Customer_ID, salesMan_ID) 
+    VALUES(8, 6, '20-7-2021 12:50', 8, 8);
+
+    INSERT INTO Orders(Order_No, Purch_AMT, Order_Date, Customer_ID, salesMan_ID) 
+    VALUES(9, 6.4, '20-7-2021 13:00', 9, 9);
+
+    INSERT INTO Orders(Order_No, Purch_AMT, Order_Date, Customer_ID, salesMan_ID) 
+    VALUES(10, 4.5, '20-7-2021 13:10', 10, 10);
+
+    INSERT INTO Orders(Order_No, Purch_AMT, Order_Date, Customer_ID, salesMan_ID) 
+    VALUES(11, 10, '20-7-2021 13:20', 11, 11);
+
+-- DISPLAY Orders Table
+    SELECT * FROM Orders;
+
+
+
+
+-- Customer Tables' values:
+    
+    INSERT INTO Customer(Customer_ID, Cust_Name, City, Grade, salesMan_ID)
+    VALUES(1, 'Phan Ngoc Trieu', 'Quang Nam', 12, 1);
+    
+    INSERT INTO Customer(Customer_ID, Cust_Name, City, Grade, salesMan_ID)
+    VALUES(2, 'Hoang Duy Nam', 'Quang Nam', 12, 2);
+
+    INSERT INTO Customer(Customer_ID, Cust_Name, City, Grade, salesMan_ID)
+    VALUES(3, 'DINH PHAN THIEN', 'Da Nang', 12, 3);
+
+    INSERT INTO Customer(Customer_ID, Cust_Name, City, Grade, salesMan_ID)
+    VALUES(4, 'Truong Lam Le', 'Hue', 12, 4);
+
+    INSERT INTO Customer(Customer_ID, Cust_Name, City, Grade, salesMan_ID)
+    VALUES(5, 'Le viet Hieu', 'Da Nang', 12, 5);
+
+    INSERT INTO Customer(Customer_ID, Cust_Name, City, Grade, salesMan_ID)
+    VALUES(6, 'Nguyen Van Duy', 'Da Nang', 12, 6);
+
+    INSERT INTO Customer(Customer_ID, Cust_Name, City, Grade, salesMan_ID)
+    VALUES(7, 'Do Van Kien', 'Kon Tum', 12, 7);
+
+    INSERT INTO Customer(Customer_ID, Cust_Name, City, Grade, salesMan_ID)
+    VALUES(8, 'Le Xuan Dieu', 'Da Nang', 12, 8);
+
+    INSERT INTO Customer(Customer_ID, Cust_Name, City, Grade, salesMan_ID)
+    VALUES(9, 'Nguyen Dai Dao', 'Thanh Hoa', 12, 9);
+
+    INSERT INTO Customer(Customer_ID, Cust_Name, City, Grade, salesMan_ID)
+    VALUES(10, 'Tran Phuoc Dinh', 'Quang Nam', 12, 10);
+
+    INSERT INTO Customer(Customer_ID, Cust_Name, City, Grade, salesMan_ID)
+    VALUES(11, 'Ton That Tinh', 'Hue', 12, 11);
+
+
+
+
+-- Some command for perform query:
+
+    SELECT * FROM salesMan ORDER BY commission;
+
+    SELECT * FROM Customer WHERE Customer_id > 5 AND City = 'Da Nang';
+
+    SELECT * FROM Orders WHERE purch_amt > 3 ORDER BY purch_amt;
+
+
+
+-- Update purch_amt on Orders Table
+    UPDATE Orders SET purch_amt = 3 WHERE purch_amt < 3;
+
+    -- To see the changing that we made
+    SELECT * FROM Orders;
+
+
+-- 
