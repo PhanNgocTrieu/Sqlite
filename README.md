@@ -1,3 +1,5 @@
+# SQLITE - source: https://www.tutorialspoint.com/sqlite
+
 # Command of Sqlite3:
 
 # 0.1. Storage Classes:
@@ -834,6 +836,9 @@
     
     * CROSS JOIN
         CROSS JOIN matches every row of the first table with every row of the second table
+        If the input tables have x and y row, respectively, the resulting table will have x*y row
+    
+    Note: Because CROSS JOINs have the potential to generate extremely large tables, care must be taken to only use them when appropriate.
 
     Syntax:
         SELECT ... FROM table1 CROSS JOIN table2 ...
@@ -908,7 +913,7 @@
         To avoid redundancy and keep the phrasing shorter, OUTER JOIN conditions can be declared with a USING expression
     Syntax:
         SELECT ... FROM table1 LEFT OUTER JOIN table2 USING ( column1 ,... ) ...
-        
+
     **Example:
         sqlite> SELECT EMP_ID, NAME, DEPT FROM COMPANY LEFT OUTER JOIN DEPARTMENT ON COMPANY.ID = DEPARTMENT.EMP_ID;
 
@@ -925,4 +930,165 @@
                         James                 
                         James 
 
+# 23. UNION:
+    SQLite UNION clause/operator is used to combine the results of two or more SELECT statements without returning any duplicate rows.
     
+    To use UNION, each SELECT must have the same number of columns selected, the same number of column expressions, the same data type, and have them in the same order, but they do not have to be of the same length.
+
+
+    Syntax:
+        SELECT column1 [, column2 ]
+        FROM table1 [, table2 ]
+        [WHERE condition]
+
+        UNION
+
+        SELECT column1 [, column2 ]
+        FROM table1 [, table2 ]
+        [WHERE condition]
+
+    
+    **Example:
+    We have:
+        Company Table:
+        ID          NAME        AGE         ADDRESS     SALARY    
+        ----------  ----------  ----------  ----------  ----------
+        1           Paul        32          California  20000.0   
+        2           Allen       25          Texas       15000.0   
+        3           Teddy       23          Norway      20000.0   
+        4           Mark        25          Rich-Mond   65000.0   
+        6           Kim         22          Texas       45000.0   
+        7           John        23          Vietnam     60000.0   
+        8           Paul        24          Houston     20000.0   
+        9           James       44          Norway      5000.0    
+        10          James       45          Texas       5000.0
+
+        Department Table:
+        ID          DEPT        EMP_ID    
+        ----------  ----------  ----------
+        1           IT Billing  1         
+        2           Engineerin  2         
+        3           Finance     7
+
+        Now let us join these two tables using SELECT statement along with UNION clause as follows:
+
+        sqlite>  SELECT EMP_ID, NAME, DEPT FROM COMPANY INNER JOIN DEPARTMENT ON COMPANY.ID = DEPARTMENT.EMP_ID
+        
+        UNION
+        
+        SELECT EMP_ID, NAME, DEPT FROM COMPANY LEFT OUTER JOIN DEPARTMENT
+        ON COMPANY.ID = DEPARTMENT.EMP_ID;
+
+        Output:
+        EMP_ID      NAME        DEPT      
+        ----------  ----------  ----------
+                    James                 
+                    Kim                   
+                    Mark                  
+                    Paul                  
+                    Teddy                 
+        1           Paul        IT Billing
+        2           Allen       Engineerin
+        7           John        Finance 
+
+    * UNION ALL:
+        The UNION ALL operator is used to combine the results of two SELECT statements including duplicate rows.
+
+        The same rules that apply to UNION apply to the UNION ALL operator as well.
+
+    Syntax:
+        SELECT column1 [, column2 ]
+        FROM table1 [, table2 ]
+        [WHERE condition]
+
+        UNION ALL
+
+        SELECT column1 [, column2 ]
+        FROM table1 [, table2 ]
+        [WHERE condition]
+
+    **Example:
+        sqlite>  SELECT EMP_ID, NAME, DEPT FROM COMPANY INNER JOIN DEPARTMENT
+        ON COMPANY.ID = DEPARTMENT.EMP_ID
+        
+        UNION ALL
+
+        SELECT EMP_ID, NAME, DEPT FROM COMPANY LEFT OUTER JOIN DEPARTMENT ON COMPANY.ID = DEPARTMENT.EMP_ID;
+    
+        Ouput:
+            EMP_ID      NAME        DEPT      
+            ----------  ----------  ----------
+            1           Paul        IT Billing
+            2           Allen       Engineerin
+            7           John        Finance   
+            1           Paul        IT Billing
+            2           Allen       Engineerin
+                        Teddy                 
+                        Mark                  
+                        Kim                   
+            7           John        Finance   
+                        Paul                  
+                        James                 
+                        James 
+
+
+# 24. NULL:
+    SQLite NULL is the term used to represent a missing value. A NULL value in a table is a value in a field that appears to be blank.
+
+    A field with a NULL value is a field with no value. It is very important to understand that a NULL value is different than a zero value or a field that contains spaces.
+
+    Syntax (Example):
+        SQLite> CREATE TABLE COMPANY(
+        ID INT PRIMARY KEY     NOT NULL,
+        NAME           TEXT    NOT NULL,
+        AGE            INT     NOT NULL,
+        ADDRESS        CHAR(50),
+        SALARY         REAL
+        );
+    
+# 25. ALIAS:
+    You can rename a table or a column temporarily by giving another name, which is known as ALIAS. The use of table aliases means to rename a table in a particular SQLite statement. Renaming is a temporary change and the actual table name does not change in the database.
+
+    The column aliases are used to rename a table's columns for the purpose of a particular SQLite query.
+
+
+    ##Following is the basic syntax of table alias.
+    Syntax:
+        SELECT column1, column2....
+        FROM table_name AS alias_name
+        WHERE [condition];
+    ##Following is the basic syntax of column alias.
+    SELECT column_name AS alias_name
+    FROM table_name
+    WHERE [condition];
+
+
+    following is the usage of TABLE ALIAS where we use C and D as aliases for COMPANY and DEPARTMENT tables respectively
+    **Example:
+        sqlite> SELECT C.ID, C.NAME, C.AGE, D.DEPT
+        FROM COMPANY AS C, DEPARTMENT AS D
+        WHERE  C.ID = D.EMP_ID;
+
+    Output:
+        ID          NAME        AGE         DEPT      
+        ----------  ----------  ----------  ----------
+        1           Paul        32          IT Billing
+        2           Allen       25          Engineerin
+        7           John        23          Finance 
+
+    Consider an example for the usage of COLUMN ALIAS where COMPANY_ID is an alias of ID column and COMPANY_NAME is an alias of name column.
+
+    sqlite> SELECT C.ID AS COMPANY_ID, C.NAME AS COMPANY_NAME, C.AGE, D.DEPT
+        FROM COMPANY AS C, DEPARTMENT AS D
+        WHERE  C.ID = D.EMP_ID;
+
+    Output:
+        COMPANY_ID  COMPANY_NAME  AGE         DEPT      
+        ----------  ------------  ----------  ----------
+        1           Paul          32          IT Billing
+        2           Allen         25          Engineerin
+        7           John          23          Finance
+
+        
+
+
